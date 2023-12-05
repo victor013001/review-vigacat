@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: review-vigacat
+  profiles:
+    active: local
+
+server:
+  servlet:
+    context-path: /review
+  port: 8083
+
+logging:
+  level:
+    root: info
+
+vigacat:
+  security:
+    url: http://localhost:8081
+  app:
+    name: Review

@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://vigacat_admin:v1g4c4t@localhost:27017/
+      database: vigacatReviewDB
