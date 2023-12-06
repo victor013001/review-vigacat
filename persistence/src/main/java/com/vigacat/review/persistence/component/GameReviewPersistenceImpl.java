@@ -27,12 +27,14 @@ public class GameReviewPersistenceImpl implements GameReviewPersistence {
     }
 
     @Override
+    @Transactional
     public GameReviewDto saveGameReview(GameReviewDto gameReviewDto) {
         GameReview gameReviewToSave = buildGameReviewToSave(gameReviewDto);
         return modelMapper.map(gameReviewRepository.save(gameReviewToSave), GameReviewDto.class);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean userGameIdReviewExist(String username, Long gameId) {
         return gameReviewRepository.findReviewByUsernameAndGameId(username, gameId);
     }
