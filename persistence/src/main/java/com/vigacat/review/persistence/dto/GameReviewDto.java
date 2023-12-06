@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -14,7 +14,7 @@ import java.util.Date;
 public class GameReviewDto {
     private Long gameId;
     private String username;
-    private Date date;
+    private LocalDate date;
     private int score;
     private String review;
 }
