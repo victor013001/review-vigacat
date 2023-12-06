@@ -10,4 +10,7 @@ public interface GameReviewRepository extends MongoRepository<GameReview, String
 
     @Query("{ 'game_id' : ?0 }")
     List<GameReview> findAllByGameId(Long gameId);
+
+    @Query(value = "{ 'username' : ?0,  'game_id' : ?1 }", exists = true)
+    boolean findReviewByUsernameAndGameId(String username, Long gameId);
 }

@@ -6,4 +6,6 @@ import java.util.Set;
 
 public interface GameReviewService {
     Set<GameReviewDto> getGameReviews(Long gameId);
+
+    GameReviewDto createGameReview(Long gameId, int score, String review);
 }
