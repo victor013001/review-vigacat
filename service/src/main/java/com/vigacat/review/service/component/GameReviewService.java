@@ -8,4 +8,6 @@ public interface GameReviewService {
     Set<GameReviewDto> getGameReviews(Long gameId);
 
     GameReviewDto createGameReview(Long gameId, int score, String review);
+
+    GameReviewDto updateGameReview(String reviewId, int score, String review);
 }
