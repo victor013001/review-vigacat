@@ -47,6 +47,30 @@ public class GameReviewPersistenceImpl implements GameReviewPersistence {
                 .orElseThrow();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Set<GameReviewDto> getPositiveGameReviews(Long gameId, int minPositiveScore) {
+        return gameReviewRepository.findAllByGameIdAndPositiveScore(gameId, minPositiveScore).stream()
+                .map(gameReview -> modelMapper.map(gameReview, GameReviewDto.class))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<GameReviewDto> getMixedGameReviews(Long gameId, int maxNegativeScore, int minPositiveScore) {
+        return gameReviewRepository.findAllByGameIdAndMixedScore(gameId, maxNegativeScore, minPositiveScore).stream()
+                .map(gameReview -> modelMapper.map(gameReview, GameReviewDto.class))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<GameReviewDto> getNegativeGameReviews(Long gameId, int maxNegativeScore) {
+        return gameReviewRepository.findAllByGameIdAndNegativeScore(gameId, maxNegativeScore).stream()
+                .map(gameReview -> modelMapper.map(gameReview, GameReviewDto.class))
+                .collect(Collectors.toSet());
+    }
+
     private GameReview buildGameReviewToSave(GameReviewDto gameReviewDto) {
         return modelMapper.map(gameReviewDto, GameReview.class);
     }

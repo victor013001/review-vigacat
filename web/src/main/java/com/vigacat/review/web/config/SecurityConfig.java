@@ -27,7 +27,7 @@ public class SecurityConfig {
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf().disable()
-                .authorizeHttpRequests().requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/game")).permitAll()
+                .authorizeHttpRequests().requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/game/**")).permitAll()
                 .and()
                 .authorizeHttpRequests().anyRequest().authenticated()
                 .and()
