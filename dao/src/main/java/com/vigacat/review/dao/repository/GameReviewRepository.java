@@ -13,4 +13,13 @@ public interface GameReviewRepository extends MongoRepository<GameReview, String
 
     @Query(value = "{ 'username' : ?0,  'game_id' : ?1 }", exists = true)
     boolean findReviewByUsernameAndGameId(String username, Long gameId);
+
+    @Query("{ 'game_id': ?0, 'score': { $gte: ?1 } }")
+    List<GameReview> findAllByGameIdAndPositiveScore(Long gameId, int minPositiveScore);
+
+    @Query("{ 'game_id': ?0, $and: [{ 'score': { $gt: ?1 } }, { 'score': { $lt: ?2 } }] }")
+    List<GameReview> findAllByGameIdAndMixedScore(Long gameId, int maxNegativeScore, int minPositiveScore);
+
+    @Query("{ 'game_id': ?0, 'score': { $lte: ?1 } }")
+    List<GameReview> findAllByGameIdAndNegativeScore(Long gameId, int maxNegativeScore);
 }

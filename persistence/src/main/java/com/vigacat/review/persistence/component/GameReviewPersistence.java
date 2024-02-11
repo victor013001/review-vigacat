@@ -12,4 +12,10 @@ public interface GameReviewPersistence {
     boolean userGameIdReviewExist(String username, Long gameId);
 
     GameReviewDto getGameReviewById(String id);
+
+    Set<GameReviewDto> getPositiveGameReviews(Long gameId, int minPositiveScore);
+
+    Set<GameReviewDto> getMixedGameReviews(Long gameId, int maxNegativeScore, int minPositiveScore);
+
+    Set<GameReviewDto> getNegativeGameReviews(Long gameId, int maxNegativeScore);
 }
