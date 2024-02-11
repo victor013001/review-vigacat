@@ -20,11 +20,19 @@ public class GameReviewException extends RuntimeException {
         this.httpStatus = type.getHttpStatus();
     }
 
+    public GameReviewException(String username, Type type) {
+        super(type.getMessage());
+        this.username = username;
+        this.gameId = null;
+        this.type = type;
+        this.httpStatus = type.getHttpStatus();
+    }
 
     @Getter
     @RequiredArgsConstructor
     public enum Type {
-        DUPLICATE_GAME_REVIEW("The user already has a review for the game.", HttpStatus.CONFLICT);
+        DUPLICATE_GAME_REVIEW("The user already has a review for the game.", HttpStatus.CONFLICT),
+        NOT_REVIEW_OWNER("Only the owner of the review can change it.", HttpStatus.FORBIDDEN);
 
         private final String message;
         private final HttpStatus httpStatus;

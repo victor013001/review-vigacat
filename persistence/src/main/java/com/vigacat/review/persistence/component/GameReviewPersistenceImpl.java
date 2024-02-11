@@ -39,6 +39,14 @@ public class GameReviewPersistenceImpl implements GameReviewPersistence {
         return gameReviewRepository.findReviewByUsernameAndGameId(username, gameId);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public GameReviewDto getGameReviewById(String id) {
+        return gameReviewRepository.findById(id)
+                .map(gameReview -> modelMapper.map(gameReview, GameReviewDto.class))
+                .orElseThrow();
+    }
+
     private GameReview buildGameReviewToSave(GameReviewDto gameReviewDto) {
         return modelMapper.map(gameReviewDto, GameReview.class);
     }

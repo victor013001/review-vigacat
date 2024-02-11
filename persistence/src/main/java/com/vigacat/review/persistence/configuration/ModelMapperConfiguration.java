@@ -24,7 +24,9 @@ public class ModelMapperConfiguration {
                     if(mappingContext.getSource() instanceof PersistentList && !((PersistentList)mappingContext.getSource()).wasInitialized()) {
                         return false;
                     }
-
+                    if(mappingContext.getSource() == null) {
+                        return false;
+                    }
                     return true;
                 }
         );

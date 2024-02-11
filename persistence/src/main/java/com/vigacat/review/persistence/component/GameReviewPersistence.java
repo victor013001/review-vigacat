@@ -10,4 +10,6 @@ public interface GameReviewPersistence {
     GameReviewDto saveGameReview(GameReviewDto gameReviewDto);
 
     boolean userGameIdReviewExist(String username, Long gameId);
+
+    GameReviewDto getGameReviewById(String id);
 }
